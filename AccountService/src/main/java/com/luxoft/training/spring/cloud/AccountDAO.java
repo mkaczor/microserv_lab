@@ -14,11 +14,11 @@ public class AccountDAO {
     @Autowired
     private AccountRepository repo;
 
-    public void create(Integer clientId) {
+    public Account create(Integer clientId) {
         AccountEntity account = new AccountEntity();
         account.setClientId(clientId);
         account.setBalance(BigDecimal.ZERO);
-        repo.save(account);
+        return repo.save(account);
     }
 
     public boolean addBalance(Integer id, BigDecimal balance) {

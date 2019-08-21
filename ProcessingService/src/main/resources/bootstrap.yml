@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: ProcessingService
+
+server:
+  port: 8804
+
+

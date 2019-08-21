@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ConfigServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:/C:/Users/Rico/Desktop/Spring Cloud/Solutions/config-repo
+
+server:
+  port: 8600
+

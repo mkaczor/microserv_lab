@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: CardService
+
+server:
+  port: 8803
+
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8701/eureka,http://localhost:8702/eureka

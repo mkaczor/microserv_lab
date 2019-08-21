@@ -1,0 +1,2 @@
+spring.application.name: Dashboard
+server.port: 8900

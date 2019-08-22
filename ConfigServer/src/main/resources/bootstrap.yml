@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: file://C:/Materials/JVA-043/config-repo
+          uri: https://github.com/mkaczor/microserv_lab_conf
           force-pull: true
 
 server:

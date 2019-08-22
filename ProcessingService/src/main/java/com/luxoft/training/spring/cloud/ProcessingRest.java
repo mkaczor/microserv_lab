@@ -1,6 +1,8 @@
 package com.luxoft.training.spring.cloud;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,15 +18,21 @@ public class ProcessingRest {
     private AccountServiceClient accountServiceClient;
 
     @Autowired
-    public ProcessingRest(ProcessingRepository processingRepository, CardServiceClient cardServiceClient, AccountServiceClient accountServiceClient) {
+    public ProcessingRest(ProcessingRepository processingRepository,
+                          CardServiceClient cardServiceClient,
+                          AccountServiceClient accountServiceClient) {
         this.processingRepository = processingRepository;
         this.cardServiceClient = cardServiceClient;
         this.accountServiceClient = accountServiceClient;
     }
 
     @PostMapping("/issue/{accountId}")
-    public ResponseEntity<ProcessingEntity> issueAccount(@PathVariable int accountId) {
+    public ResponseEntity<?> issueAccount(@PathVariable int accountId) {
         String cardNumber = cardServiceClient.create();
+        if (cardNumber == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("CARD_SERVICE_NOT_AVAILABLE");
+        }
         ProcessingEntity processingEntity = new ProcessingEntity();
         processingEntity.setAccountId(accountId);
         processingEntity.setCard(cardNumber);

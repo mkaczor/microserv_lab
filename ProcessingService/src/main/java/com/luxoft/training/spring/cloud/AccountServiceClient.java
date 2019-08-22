@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
-@FeignClient("AccountService")
+@FeignClient(value = "AccountService", fallback = AccountServiceFallback.class)
 public interface AccountServiceClient {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/account/{accountId}/checkout")

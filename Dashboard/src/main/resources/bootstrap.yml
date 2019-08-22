@@ -1,2 +1,6 @@
-spring.application.name: Dashboard
-server.port: 8900
+spring:
+  application:
+    name: Dashboard
+  cloud:
+    config:
+      uri: http://localhost:8600

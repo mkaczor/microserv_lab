@@ -1,34 +1,7 @@
 spring:
   application:
     name: Zuul
-
-server:
-  port: 8700
-
-zuul:
-  ignoredServices: '*'
-  routes:
-    clients:
-      path: /client/**
-      serviceId: ClientService
-      stripPrefix: true
-    accounts:
-      path: /account/**
-      serviceId: AccountService
-      stripPrefix: true
-    card-processing:
-      path: /processing/**
-      serviceId: ProcessingService
-      stripPrefix: true
-
-eureka:
-  client:
-    fetchRegistry: true
-    registerWithEureka: false
-    serviceUrl:
-      defaultZone: http://localhost:8702/eureka, http://localhost:8701/eureka
-
-management:
-  security:
-    enabled: false
+  cloud:
+    config:
+      uri: http://localhost:8600
 

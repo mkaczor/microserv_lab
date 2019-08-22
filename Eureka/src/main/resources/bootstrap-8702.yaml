@@ -1,15 +1,6 @@
 spring:
   application:
     name: Eureka
-
-server:
-  port: 8702
-
-eureka:
-  server:
-    enable-self-preservation: false
-  client:
-    fetchRegistry: true
-    registerWithEureka: true
-    serviceUrl:
-      defaultZone: http://localhost:8701/eureka
+  cloud:
+    config:
+      uri: http://localhost:8600

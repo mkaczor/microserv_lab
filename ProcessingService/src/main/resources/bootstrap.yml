@@ -1,15 +1,9 @@
 spring:
   application:
     name: ProcessingService
+  cloud:
+    config:
+      uri: http://localhost:8600
 
-server:
-  port: 8804
-
-eureka:
-  client:
-    fetchRegistry: true
-    registerWithEureka: true
-    serviceUrl:
-      defaultZone: http://localhost:8702/eureka, http://localhost:8701/eureka
 
 

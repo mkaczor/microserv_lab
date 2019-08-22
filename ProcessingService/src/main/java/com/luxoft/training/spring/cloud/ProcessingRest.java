@@ -1,5 +1,6 @@
 package com.luxoft.training.spring.cloud;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -55,4 +56,17 @@ public class ProcessingRest {
 //    public ResponseEntity<?> getCardsByAccount() {
 //        processingRepository.f
 //    }
+
+    @GetMapping("/test")
+    @HystrixCommand(fallbackMethod = "failedTest")
+    public ResponseEntity<String> test(@RequestParam boolean fail) {
+        if (fail) {
+            throw new RuntimeException("Fail param set to true");
+        }
+        return ResponseEntity.ok("OK");
+    }
+
+    private ResponseEntity<String> failedTest(boolean fail) {
+        return ResponseEntity.ok("FAILED");
+    }
 }
